@@ -26,7 +26,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         setupRecyclerView()
         setupSearch()
-        fetchMovies() // Initial load
+        fetchMovies()
     }
 
     private fun setupSearch() {
