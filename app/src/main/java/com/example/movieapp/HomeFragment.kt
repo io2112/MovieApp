@@ -30,26 +30,20 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     }
 
     private fun setupSearch() {
-        val searchView = binding.searchView
+        val searchText = binding.searchView.findViewById<EditText>(androidx.appcompat.R.id.search_src_text)
+        val searchIcon = binding.searchView.findViewById<ImageView>(androidx.appcompat.R.id.search_mag_icon)
+        val closeBtn = binding.searchView.findViewById<ImageView>(androidx.appcompat.R.id.search_close_btn)
 
-        try {
-            val searchText = searchView.findViewById<EditText>(androidx.appcompat.R.id.search_src_text)
-            val searchIcon = searchView.findViewById<ImageView>(androidx.appcompat.R.id.search_mag_icon)
-            val closeBtn = searchView.findViewById<ImageView>(androidx.appcompat.R.id.search_close_btn)
+        searchText.setTextColor(Color.WHITE)
+        searchText.setHintTextColor(Color.LTGRAY)
+        searchIcon.setColorFilter(Color.WHITE)
+        closeBtn.setColorFilter(Color.WHITE)
 
-            searchText.setTextColor(Color.WHITE)
-            searchText.setHintTextColor(Color.LTGRAY)
-            searchIcon.setColorFilter(Color.WHITE)
-            closeBtn.setColorFilter(Color.WHITE)
-        } catch (e: Exception) {
-            Log.e("HomeFragment", "Error styling search view", e)
-        }
-
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if (!query.isNullOrEmpty()) {
                     fetchMovies(query)
-                    searchView.clearFocus()
+                    binding.searchView.clearFocus()
                 }
                 return true
             }
@@ -80,11 +74,16 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                     val movies = response.body()?.results ?: emptyList()
                     movieAdapter.setMovies(movies)
 
-                    binding.rvMovies.visibility = if (movies.isNotEmpty()) View.VISIBLE else View.GONE
-                    binding.layoutEmptyState.visibility = if (movies.isEmpty()) View.VISIBLE else View.GONE
+                    if (movies.isEmpty()) {
+                        binding.rvMovies.visibility = View.GONE
+                        binding.layoutEmptyState.visibility = View.VISIBLE
+                    } else {
+                        binding.rvMovies.visibility = View.VISIBLE
+                        binding.layoutEmptyState.visibility = View.GONE
+                    }
                 }
             } catch (e: Exception) {
-                Log.e("HomeFragment", "Error fetching movies: ${e.message}")
+                Log.e("HomeFragment", "Error: ${e.message}")
             } finally {
                 binding.progressBar.visibility = View.GONE
             }

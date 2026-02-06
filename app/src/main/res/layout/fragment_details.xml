@@ -1,55 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white">
+    android:background="#0F0F0F">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="32dp">
+        android:orientation="vertical">
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/cardPoster"
+        <ImageView
+            android:id="@+id/ivDetailsPoster"
             android:layout_width="match_parent"
-            android:layout_height="450dp"
-            app:cardCornerRadius="32dp"
-            app:cardElevation="8dp"
-            app:cardPreventCornerOverlap="false"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="400dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_movie_placeholder" />
 
-            <ImageView
-                android:id="@+id/ivDetailsPoster"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+
+            <TextView
+                android:id="@+id/tvDetailsTitle"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                android:src="@drawable/ic_movie_placeholder" />
+                android:layout_height="wrap_content"
+                android:text="Movie Title"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:layout_marginBottom="12dp" />
 
-        </com.google.android.material.card.MaterialCardView>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="16dp">
 
-        <TextView
-            android:id="@+id/tvDetailsTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="24dp"
-            android:textSize="28sp"
-            android:textStyle="bold"
-            android:textColor="#212121"
-            app:layout_constraintTop_toBottomOf="@id/cardPoster" />
+                <TextView
+                    android:id="@+id/tvDetailsRating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="⭐ 6.6"
+                    android:textSize="14sp"
+                    android:textColor="#FFD700"
+                    android:layout_marginEnd="16dp" />
 
+                <TextView
+                    android:id="@+id/tvDetailsYear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2112"
+                    android:textSize="14sp"
+                    android:textColor="#888888" />
 
-        <TextView
-            android:id="@+id/tvDetailsOverview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="12dp"
-            android:textSize="16sp"
-            android:lineSpacingExtra="6dp"
-            android:textColor="#424242"
-            app:layout_constraintTop_toBottomOf="@id/tvDetailsTitle" />
+            </LinearLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Overview"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/tvDetailsOverview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Movie overview will appear here..."
+                android:textSize="15sp"
+                android:lineSpacingExtra="4dp"
+                android:textColor="#CCCCCC" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
 </ScrollView>

@@ -18,20 +18,23 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentDetailsBinding.bind(view)
 
-
         val movie = args.movie
 
         binding.apply {
             tvDetailsTitle.text = movie.title
             tvDetailsOverview.text = movie.overview
 
+            // Rating
+            tvDetailsRating.text = "⭐ ${String.format("%.1f", movie.vote_average)}"
+
+            // Year (extract from release_date like "2024-05-15")
+            tvDetailsYear.text = movie.release_date?.take(4) ?: "N/A"
+
             val posterUrl = "${Constants.IMAGE_BASE_URL}${movie.poster_path}"
 
             Glide.with(this@DetailsFragment)
                 .load(posterUrl)
                 .into(ivDetailsPoster)
-
-
         }
     }
 
