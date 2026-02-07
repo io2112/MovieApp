@@ -1,7 +1,7 @@
 package com.example.movieapp
 
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory // Ensure this import is here
+import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitInstance {
     val api: MovieApiService by lazy {
